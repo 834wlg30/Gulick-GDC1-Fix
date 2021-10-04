@@ -14,14 +14,20 @@ using UnityEngine;
 
 public class ProxyDamage : MonoBehaviour
 {
-    public float dmgVal = 10f; //dmg per sec
+    public float dmgVal = 10f; //dmg on collision
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Health h = other.gameObject.GetComponent<Health>();
 
         if(h == null) { return; }
 
-        h.HP -= dmgVal * Time.deltaTime;
+        h.HP -= dmgVal;
+        Destroy(this.gameObject); //object dies upon collision
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 }

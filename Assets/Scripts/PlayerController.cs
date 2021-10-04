@@ -3,7 +3,7 @@
  * Date Created: 9/13/2021
  * 
  * Last edited by:
- * Last updated: 9/15/2021
+ * Last updated: 10/2/2021
  * 
  * Description: Controls player movement
  ****/
@@ -43,9 +43,13 @@ public class PlayerController : MonoBehaviour
         //Update movement
         float Horz = Input.GetAxis(HorzAxis);
         float Vert = Input.GetAxis(VertAxis);
-        Vector3 MoveDirection = new Vector3(Horz, 0.0f, Vert);
-        ThisBody.AddForce(MoveDirection.normalized * MaxSpeed);
+        Vector3 MoveDirection = new Vector3(0f,0f,0f);
 
+        if (Horz != 0f)
+        {
+            MoveDirection = MoveDirection + new Vector3(Horz * MaxSpeed, 0f, 0f);
+            ThisBody.AddForce(MoveDirection.normalized * MaxSpeed);
+        }
         //Clamp speed
         ThisBody.velocity = new Vector3(Mathf.Clamp(ThisBody.velocity.x, -MaxSpeed, MaxSpeed),
         Mathf.Clamp(ThisBody.velocity.y, -MaxSpeed, MaxSpeed),
@@ -87,5 +91,10 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.GameOver();
     }
 }

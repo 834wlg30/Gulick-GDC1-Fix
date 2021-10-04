@@ -14,7 +14,7 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    public float maxSpeed = 10f;
+    public float maxSpeed = 7f;
 
     // Update is called once per frame
     void Update()
