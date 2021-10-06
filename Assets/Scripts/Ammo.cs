@@ -17,6 +17,7 @@ public class Ammo : MonoBehaviour
 {
     public float Damage = 100f;
     public float LifeTime = 2f;
+    public bool Pierce = false;
     //------------------------------
     void OnEnable()
     {
@@ -33,6 +34,9 @@ public class Ammo : MonoBehaviour
         if (H == null) return;
 
         H.HP -= Damage;
+
+        if(!Pierce)
+        Die();
     }
     //------------------------------
     void Die()

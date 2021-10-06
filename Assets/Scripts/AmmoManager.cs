@@ -66,4 +66,12 @@ public class AmmoManager : MonoBehaviour
         return SpawnedAmmo;
     }
     //------------------------------
+
+    void Upgrade()
+    {
+        for (int i = 0; i < PoolSize; i++)
+        {
+            AmmoArray[i].gameObject.GetComponent<Mover>().maxSpeed = 17f;
+        }
+    }
 }

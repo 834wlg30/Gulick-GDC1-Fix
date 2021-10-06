@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    [SerializeField] private GameObject[] waves = new GameObject[10];
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
     }

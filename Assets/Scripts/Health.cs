@@ -41,14 +41,4 @@ public class Health : MonoBehaviour
             }
         } //end set
     } // end public HP
-
-    // Update is called once per frame
-    void Update()
-    {
-        //debug health test
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            HP = 0;
-        }
-    }
 }
