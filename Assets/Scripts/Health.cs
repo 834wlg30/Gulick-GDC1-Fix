@@ -5,12 +5,14 @@
  * Last edited by:
  * Last updated: 9/20/2021
  * 
- * Description: Controls player health
+ * Description: Controls player health, manages health bar
  ****/
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Health : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class Health : MonoBehaviour
 
     public bool destroyOnDeath = true;
     public GameObject deathEffect = null;
+    public Image healthBar;
+    public TMP_Text healthText;
 
     public float HP
     {
@@ -41,4 +45,14 @@ public class Health : MonoBehaviour
             }
         } //end set
     } // end public HP
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(healthBar != null)
+        {
+            healthBar.fillAmount = HP / 100;
+            healthText.text = "HEALTH: " + HP.ToString();
+        }
+    }
 }

@@ -15,7 +15,7 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     public float MaxRadius = 1f;
-    public float Interval = 5f;
+    public float Interval = 2f;
     public GameObject ObjToSpawn = null;
     private Transform Origin = null;
     void Awake()

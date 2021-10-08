@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     public string VertAxis = "Vertical";
     public string FireAxis = "Fire1";
 
-    public float MaxSpeed = 5f;
-    public float ReloadDelay = 0.3f;
+    public float MaxSpeed = 8f;
+    public float ReloadDelay = 0.05f;
     public bool CanFire = true;
 
     public Transform[] TurretTransforms;
@@ -43,17 +43,18 @@ public class PlayerController : MonoBehaviour
         //Update movement
         float Horz = Input.GetAxis(HorzAxis);
         float Vert = Input.GetAxis(VertAxis);
-        Vector3 MoveDirection = new Vector3(0f,0f,0f);
 
+        //horizontal movement and "braking"
         if (Horz != 0f)
         {
-            MoveDirection = MoveDirection + new Vector3(Horz * MaxSpeed, 0f, 0f);
-            ThisBody.AddForce(MoveDirection.normalized * MaxSpeed);
+            ThisBody.velocity = new Vector3(Horz * MaxSpeed, 0f, ThisBody.velocity.z);
         }
-        //Clamp speed
-        ThisBody.velocity = new Vector3(Mathf.Clamp(ThisBody.velocity.x, -MaxSpeed, MaxSpeed),
-        Mathf.Clamp(ThisBody.velocity.y, -MaxSpeed, MaxSpeed),
-        Mathf.Clamp(ThisBody.velocity.z, -MaxSpeed, MaxSpeed));
+
+        //vertical movement and "braking"
+        if (Vert != 0f)
+        {
+            ThisBody.velocity = new Vector3(ThisBody.velocity.x, 0f, Vert * MaxSpeed);
+        }
 
         //Should look with mouse?
         if (MouseLook)

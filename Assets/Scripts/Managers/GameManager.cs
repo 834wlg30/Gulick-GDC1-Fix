@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,7 +34,10 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public static int score;
+   [SerializeField] public static int score;
+   [SerializeField] public int levelScore;
+   [SerializeField] public int levelNum;
+   [SerializeField] public int numLevels;
     public string scorePrefix = string.Empty;
     public TMP_Text scoreText = null;
     public TMP_Text deathText = null;
@@ -42,6 +46,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameManagerInScene();
+        levelNum = 0;
+        numLevels = 2;
     }
 
     // Update is called once per frame
@@ -50,6 +56,14 @@ public class GameManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = scorePrefix + score.ToString();
+            levelScore = score;
+
+            if (score >= 5000 && levelNum < numLevels)
+            {
+                levelScore = 0;
+                levelNum++;
+                SceneManager.LoadScene(levelNum);
+            }
         }
     }
 

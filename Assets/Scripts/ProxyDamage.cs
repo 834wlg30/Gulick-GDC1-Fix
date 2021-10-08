@@ -18,12 +18,13 @@ public class ProxyDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Health h = other.gameObject.GetComponent<Health>();
+        Health pH = other.gameObject.GetComponent<Health>();
+        Health tH = this.gameObject.GetComponent<Health>();
 
-        if(h == null) { return; }
+        if(pH == null) { return; }
 
-        h.HP -= dmgVal;
-        Destroy(this.gameObject); //object dies upon collision
+        pH.HP -= dmgVal;
+        tH.HP = 0; //object dies upon collision
     }
 
     private void OnDestroy()

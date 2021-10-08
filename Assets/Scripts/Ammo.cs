@@ -26,8 +26,10 @@ public class Ammo : MonoBehaviour
     }
     //------------------------------
     // Update is called once per frame
-    void OnTriggerEnter(Collider Col)
+    void OnTriggerStay(Collider Col)
     {
+        //Debug.Log("Trigger Entered");
+
         //Get health component
         Health H = Col.gameObject.GetComponent<Health>();
 
